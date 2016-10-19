@@ -51,7 +51,7 @@ def getDatasetListforTag(tag = None, l = None, verbose = False):
 		print ("%s : processing %s records." % (m, n))
 
 		g = open(l, "wt")
-		f = csv.writer(g,delimiter=',')
+		f = csv.writer(g)
 		
         
         # Write headers.
@@ -59,9 +59,10 @@ def getDatasetListforTag(tag = None, l = None, verbose = False):
         
         # Write records.
 		record_counter = 0
+		print(len(d["result"]["packages"]))
 		for dataset in d["result"]["packages"]:
 			record_counter += 1
-			print (dataset["title"])
+			
 			try:
 				f.writerow([dataset["title"], dataset["name"], dataset["owner_org"], dataset["maintainer"], dataset["maintainer_email"], dataset["revision_timestamp"], dataset["id"], dataset["num_resources"], dataset["num_tags"], len(dataset["extras"])])
 				
